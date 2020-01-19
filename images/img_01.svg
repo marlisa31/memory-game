@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="140" height="140" viewBox="0 0 140 140">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rechteck_24" data-name="Rechteck 24" width="140" height="140" transform="translate(317 89)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Gruppe_maskieren_1" data-name="Gruppe maskieren 1" transform="translate(-317 -89)" clip-path="url(#clip-path)">
+    <g id="Gruppe_2" data-name="Gruppe 2">
+      <path id="Pfad_6" data-name="Pfad 6" d="M71,82.868,219.27,95.175" transform="translate(241.675 31.256)" fill="none" stroke="#ebe0bb" stroke-width="1"/>
+      <path id="Pfad_7" data-name="Pfad 7" d="M219.269,82.868,71,95.175" transform="translate(242.377 53.55)" fill="none" stroke="#ebe0bb" stroke-width="1"/>
+      <path id="Pfad_8" data-name="Pfad 8" d="M71,82.868,219.27,95.175" transform="translate(241.675 53.55)" fill="none" stroke="#ebe0bb" stroke-width="1"/>
+      <path id="Pfad_9" data-name="Pfad 9" d="M219.269,82.868,71,95.175" transform="translate(242.377 75.845)" fill="none" stroke="#ebe0bb" stroke-width="1"/>
+      <path id="Pfad_10" data-name="Pfad 10" d="M219.269,82.868,71,95.175" transform="translate(242.377 79.03)" fill="none" stroke="#ebe0bb" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

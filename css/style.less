@@ -1,0 +1,52 @@
+// out: style.css, sourcemap: false, compress: true;
+
+@dark-brown: #524040;
+
+body {
+	background-color: @dark-brown;
+	font-family: "Zilla Slab", "sans-serif";
+}
+
+p, h1, h2, h3, h4 {
+	color: white;
+	text-align: center;
+	font-weight: 300;
+}
+
+.test {
+	font-size: 18px;
+}
+
+.memory-wrap {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.memory-card {
+	//background-color: black;
+	border: .5px solid fade(white, 50%);
+	margin: 15px;
+	height: 12vw;
+	width: 12vw;
+
+	background-image: url('images/logo-martini.svg');
+	background-size: 50%;
+	background-repeat: no-repeat;
+	background-position: center;
+	overflow: hidden;
+}
+
+.memory-image {
+	height: 100%;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+
+}
+
+
+.bg-img {
+	background-repeat: no-repeat;
+	background-position: center;
+}
