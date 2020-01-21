@@ -17,26 +17,45 @@ h4 {
 .memory-wrap {
   display: flex;
   flex-flow: row wrap;
+  perspective: 1000px;
 }
 .memory-card {
+  position: relative;
   border: 0.5px solid rgba(255, 255, 255, 0.5);
   margin: 15px;
   height: 12vw;
   width: 12vw;
-  background-image: url('../images/back.svg');
-  background-size: 50%;
+  transform-style: preserve-3d;
+  transition: all 1s ease-in-out;
+}
+.memory-card .memory-cover,
+.memory-card .memory-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #524040;
+  width: 100%;
+  height: 100%;
   background-repeat: no-repeat;
   background-position: center;
-  overflow: hidden;
+  background-size: cover;
+  backface-visibility: hidden;
 }
-.memory-image {
+.memory-card .memory-cover {
   height: 100%;
   width: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
+.memory-card .memory-image {
+  transform: rotateY(-180deg);
+}
+.memory-card.open {
+  transform: rotateY(-180deg);
+}
 .bg-img {
   background-repeat: no-repeat;
   background-position: center;
+  background-size: cover;
 }

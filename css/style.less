@@ -20,33 +20,50 @@ p, h1, h2, h3, h4 {
 .memory-wrap {
 	display: flex;
 	flex-flow: row wrap;
+  perspective: 1000px;
 }
 
+// single memory cards
 .memory-card {
-	//background-color: black;
+	position: relative;
 	border: .5px solid fade(white, 50%);
 	margin: 15px;
 	height: 12vw;
 	width: 12vw;
+  transform-style: preserve-3d;
+  transition: all 1s ease-in-out;
+	.memory-cover, .memory-image {
+		position: absolute;
+		top: 0;
+		left: 0;
+		background-color: @dark-brown;
+		width: 100%;
+		height: 100%;
+		.bg-img;
+		backface-visibility: hidden;
+	}
+	.memory-cover {
+		//background-image: url(../images/back.svg);
+		height: 100%;
+		width: 100%;
+		.bg-img;
+	}
+	.memory-image {
+			transform: rotateY(-180deg);
+	}
 
-	background-image: url('../images/back.svg');
-	background-size: 50%;
-	background-repeat: no-repeat;
-	background-position: center;
-	overflow: hidden;
-}
-
-.memory-image {
-	height: 100%;
-	width: 100%;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
-
+	&.open {
+		transform: rotateY(-180deg);
+	}
 }
 
 
 .bg-img {
 	background-repeat: no-repeat;
 	background-position: center;
+	background-size: cover;
+}
+
+.transition(@param 1){
+
 }
