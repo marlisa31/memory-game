@@ -2,7 +2,7 @@
 let memoryWrap = document.querySelector('.memory-wrap');
 
 // object for data in the images array plus methods to change the array
-let memoryGame = {
+let cards = {
 	images: ['img_01.svg', 'img_02.svg', 'img_03.svg', 'img_04.svg', 'img_05.svg', 'img_06.svg', 'img_07.svg', 'img_08.svg'],
 	duplicateCards: function duplicateCards() {
 		let duplicatedCards = [];
@@ -43,12 +43,31 @@ let memoryGame = {
 	},
 	matchedCards: [],
 	unmatchedCards: function createUnmatchedCards() {
+			var unmatchedCards = this.images.slice(0);
 			this.images.slice(0);
+			console.log(this.images.slice(0));
 	}
 }
 
 // object to handle events (user interactions)
 let handlers = {
+	generalHandling: function generalHandling(event) {
+		// exit function if selected target is not correct
+	  if (!event.target.matches('.memory-cover')) return
+
+		// select parent element of .memory-cover which is .memory-card
+		const memoryCard = event.target.parentNode;
+		handlers.showCard(memoryCard);
+		handlers.openCardsIncrease(memoryCard);
+		handlers.openCardsCheck(memoryCard);
+	},
+	delayHandling: function delayHandling() {
+		memoryWrap.removeEventListener('click', handlers.generalHandling);
+		function Listening(){
+			memoryWrap.addEventListener('click', handlers.generalHandling);
+		}
+		setTimeout(Listening, 2500);
+	},
 	showCard: function showCard(item) {
 			item.classList.add('open');
 	},
@@ -58,57 +77,46 @@ let handlers = {
 			});
 	},
 	openCardsCount: 0,
-	openCardsIncrease: function openCardsIncrease(){
+	openCardsIncrease: function openCardsIncrease() {
 		this.openCardsCount++;
+		console.log(this.openCardsCount);
 	},
-	openCardsCheck: function openCardsCheck(){
-		if (this.openCardsCount == 2){
-			// + block all cards from being clicked > remove event listener?
+	openCardsCheck: function openCardsCheck(item) {
+		if (handlers.openCardsCount == 2) {
+			handlers.delayHandling();
+			setTimeout(handlers.hideCards, 2000);
 			this.openCardsCount = 0;
-			setTimeout(this.hideCards, 1500);
+		}
+		else {
+			return;
 		}
 	},
 	matchingPair: function matchingPair() {
+		if (handlers.openCardsCount == 2 && item.) {
+			// the current card gets permanently open class
+			item.classList.add('permanently-open');
+			// the other matching card gets permanently open class
+		}
 		//if name is identical
 	}
 }
 
 // duplicate, shuffle and display all cards
-memoryGame.duplicateCards();
-memoryGame.shuffleCards();
-memoryGame.displayCards();
+cards.duplicateCards();
+cards.shuffleCards();
+cards.displayCards();
 
 // convert NodeList of cards to array
 const memoryCards = Array.prototype.slice.apply(document.querySelectorAll('.memory-card'));
 
 // add EventListener to each of the cards
-memoryCards.forEach(function(memoryCard){
-	memoryCard.addEventListener('click', function(item) {
-		handlers.showCard(memoryCard);
-		handlers.openCardsIncrease();
-		handlers.openCardsCheck();
-		// + block event listener while one card is clicked and being opened
-
-		// close cards if two are open
-		// if cards don't match
-
-	});
-});
-
-// console.log(memoryGame.unmatchedCards());
-console.log(memoryGame.unmatchedCards);
+memoryWrap.addEventListener('click', handlers.generalHandling);
 
 
-/*
-function cardCheck() {
-	if (handlers.openCardsCount == 2){
-		setTimeout(handlers.hideCards, 1500);
-		handlers.openCardsCount = 0;
-	}
-}
+console.log(cards.unmatchedCards());
+//console.log(cards.unmatchedCards);
 
-cardCheck();
-*/
+console.log(cards.images);
 
 	// PSEUDO CODE
 	// store all pictures in one array, each of them exists twice (array in array?).
@@ -118,3 +126,7 @@ cardCheck();
 	// how to duplicate images so that they still have a reference to each other?
 
 	// if more than two cards are open, close them again before opening the next card
+
+
+
+// store number 1 in variable and
