@@ -51,7 +51,11 @@ h4 {
 .memory-card .memory-image {
   transform: rotateY(-180deg);
 }
-.memory-card.open {
+.memory-card:not(.open):not(.permanently-open) {
+  cursor: pointer;
+}
+.memory-card.open,
+.memory-card.permanently-open {
   transform: rotateY(-180deg);
 }
 .bg-img {

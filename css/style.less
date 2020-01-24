@@ -51,8 +51,10 @@ p, h1, h2, h3, h4 {
 	.memory-image {
 			transform: rotateY(-180deg);
 	}
-
-	&.open {
+	&:not(.open):not(.permanently-open){
+		cursor: pointer;
+	}
+	&.open, &.permanently-open {
 		transform: rotateY(-180deg);
 	}
 }
@@ -65,5 +67,5 @@ p, h1, h2, h3, h4 {
 }
 
 .transition(@param 1){
-
+	// fill
 }

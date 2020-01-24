@@ -82,24 +82,38 @@ let handlers = {
 		console.log(this.openCardsCount);
 	},
 	openCardsCheck: function openCardsCheck(item) {
-		if (handlers.openCardsCount == 2) {
+		if (this.openCardsCount == 1) {
+			this.firstCard = item.firstChild.nextSibling;
+		}
+		else if (this.openCardsCount == 2) {
+			this.secondCard = item.firstChild.nextSibling;
+			handlers.compareCards();
+
+			// if cards are not identical hide cards again
 			handlers.delayHandling();
 			setTimeout(handlers.hideCards, 2000);
 			this.openCardsCount = 0;
 		}
-		else {
-			return;
-		}
 	},
-	matchingPair: function matchingPair() {
-		if (handlers.openCardsCount == 2 && item.) {
-			// the current card gets permanently open class
-			item.classList.add('permanently-open');
-			// the other matching card gets permanently open class
+	firstCard: '',
+	secondCard: '',
+	compareCards: function compareCards() {
+		// compare if first and second card are identical
+		if (this.firstCard.style.backgroundImage == this.secondCard.style.backgroundImage) {
+			console.log(this.firstCard.parentNode);
+			console.log(this.secondCard.parentNode);
+			this.firstCard.parentNode.classList.add('permanently-open');
+			this.secondCard.parentNode.classList.add('permanently-open');
 		}
+			// the current card gets permanently open class
+			//item.classList.add('permanently-open');
+			// the other matching card gets permanently open class
 		//if name is identical
 	}
 }
+
+// let firstCard;
+// let secondCard;
 
 // duplicate, shuffle and display all cards
 cards.duplicateCards();
