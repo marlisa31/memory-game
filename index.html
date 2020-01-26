@@ -1,4 +1,4 @@
-<! DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -14,9 +14,27 @@
 
 <body>
 	<h1>Memory Game</h1>
-
+	<div class="counter">
+	<p>Amount of moves: <span class="move-amount"></span></p>	
+	</div>
 	<div class="memory-wrap">
 	</div>
+
+<div id="modal">
+	<div class="modal-content">
+		<div class="modal-head">
+			<div class="close">
+				<span class="bar bar-one"> </span>
+				<span class="bar bar-two"></span>
+			</div>
+	</div>
+		<div class="text">
+			<p>You won!</p>
+			<p>Completion time: </p>
+			<a href="/">Play again</a>
+		</div>
+	</div>
+</div>
 
 <script src="js/javascript.js"></script>
 </body>

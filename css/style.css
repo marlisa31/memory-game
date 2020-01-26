@@ -58,6 +58,41 @@ h4 {
 .memory-card.permanently-open {
   transform: rotateY(-180deg);
 }
+#modal {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  background-color: rgba(101, 79, 79, 0.93);
+}
+#modal.open {
+  display: flex;
+}
+#modal .modal-content {
+  background-color: #524040;
+  padding: 40px;
+  position: relative;
+  min-width: 220px;
+}
+#modal .modal-head {
+  display: flex;
+  justify-content: flex-end;
+}
+#modal .bar {
+  background-color: white;
+  width: 30px;
+  height: 1px;
+  display: block;
+}
+#modal .bar.bar-one {
+  transform: rotate(45deg);
+}
+#modal .bar.bar-two {
+  transform: rotate(-45deg);
+}
 .bg-img {
   background-repeat: no-repeat;
   background-position: center;

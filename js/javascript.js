@@ -1,5 +1,4 @@
-
-let memoryWrap = document.querySelector('.memory-wrap');
+const memoryWrap = document.querySelector('.memory-wrap');
 
 // object for data in the images array plus methods to change the array
 let cards = {
@@ -34,26 +33,37 @@ let cards = {
 			memoryCover.setAttribute('class', 'memory-cover');
 			memoryCard.appendChild(memoryCover);
 
-			// Create and append memory image (child)
+			// create and append memory image (child)
 			let memoryImage = document.createElement('div');
 			memoryImage.setAttribute('class', 'memory-image');
 			memoryImage.setAttribute('style', 'background-image:url("images/' + this.images[i] + '")');
 			memoryCard.appendChild(memoryImage);
 		}
 	},
-	matchedCards: [],
-	unmatchedCards: function createUnmatchedCards() {
-			var unmatchedCards = this.images.slice(0);
-			this.images.slice(0);
-			console.log(this.images.slice(0));
+	matchedPairs: 0,
+	matchesCheck: function matchesCheck() {
+		this.matchedPairs++;
+		if ((this.matchedPairs * 2) == this.images.length) {
+			setTimeout(this.gameEnd, 2050);
+		}
+	},
+	gameEnd: function gameEnd() {
+		modal.classList.add('open');
 	}
 }
+
+// duplicate, shuffle and display all cards
+cards.duplicateCards();
+cards.shuffleCards();
+cards.displayCards();
+
 
 // object to handle events (user interactions)
 let handlers = {
 	generalHandling: function generalHandling(event) {
+
 		// exit function if selected target is not correct
-	  if (!event.target.matches('.memory-cover')) return
+	  if (!event.target.matches('.memory-cover')) return;
 
 		// select parent element of .memory-cover which is .memory-card
 		const memoryCard = event.target.parentNode;
@@ -76,15 +86,28 @@ let handlers = {
 					item.classList.remove('open');
 			});
 	},
+	moveCount: 0,
+	moveUpdate: function moveUpdate() {
+		// update moves and assign them to span element
+		this.moveCount++;
+		console.log(this.moveCount);
+		document.querySelector('.move-amount').innerHTML = this.moveCount;
+
+	},
+	firstCard: '',
+	secondCard: '',
 	openCardsCount: 0,
 	openCardsIncrease: function openCardsIncrease() {
 		this.openCardsCount++;
-		console.log(this.openCardsCount);
 	},
 	openCardsCheck: function openCardsCheck(item) {
+
+		// if first card during one move is turned over
 		if (this.openCardsCount == 1) {
 			this.firstCard = item.firstChild.nextSibling;
+			this.moveUpdate();
 		}
+		// if second card during one move is turned over
 		else if (this.openCardsCount == 2) {
 			this.secondCard = item.firstChild.nextSibling;
 			handlers.compareCards();
@@ -95,30 +118,20 @@ let handlers = {
 			this.openCardsCount = 0;
 		}
 	},
-	firstCard: '',
-	secondCard: '',
 	compareCards: function compareCards() {
+
 		// compare if first and second card are identical
 		if (this.firstCard.style.backgroundImage == this.secondCard.style.backgroundImage) {
-			console.log(this.firstCard.parentNode);
-			console.log(this.secondCard.parentNode);
 			this.firstCard.parentNode.classList.add('permanently-open');
 			this.secondCard.parentNode.classList.add('permanently-open');
+			cards.matchesCheck();
 		}
-			// the current card gets permanently open class
-			//item.classList.add('permanently-open');
-			// the other matching card gets permanently open class
-		//if name is identical
+	},
+	closeModal: function closeModal() {
+		modal.classList.remove('open');
+		//console.log('closed it again')
 	}
 }
-
-// let firstCard;
-// let secondCard;
-
-// duplicate, shuffle and display all cards
-cards.duplicateCards();
-cards.shuffleCards();
-cards.displayCards();
 
 // convert NodeList of cards to array
 const memoryCards = Array.prototype.slice.apply(document.querySelectorAll('.memory-card'));
@@ -126,21 +139,16 @@ const memoryCards = Array.prototype.slice.apply(document.querySelectorAll('.memo
 // add EventListener to each of the cards
 memoryWrap.addEventListener('click', handlers.generalHandling);
 
+// EventListener for closing modal
+const modal = document.querySelector('#modal');
+document.querySelector('.close').addEventListener('click', handlers.closeModal);
 
-console.log(cards.unmatchedCards());
-//console.log(cards.unmatchedCards);
 
-console.log(cards.images);
 
-	// PSEUDO CODE
+	// PSEUDO CODE/ NOTES
 	// store all pictures in one array, each of them exists twice (array in array?).
 	// fill the 16 places in a random order with the existing pictures (places also array?)
 	// create one array for not found pairs and one for found pairs
 	// turn a card on click. When two cards are open, check if they are identical, if not, turn them around again and start over. If they are identical, leave them open and make them not clickable anymore. Take them out of the array?
 	// how to duplicate images so that they still have a reference to each other?
-
-	// if more than two cards are open, close them again before opening the next card
-
-
-
-// store number 1 in variable and
+	// remove blocker if cards are identical so user can continue playing immediately
