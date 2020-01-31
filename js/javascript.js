@@ -77,15 +77,18 @@ let cards = {
 			setTimeout(this.gameEnd, 2050);
 		}
 	},
+	startGame: function startGame() {
+		this.duplicateCards();
+		this.shuffleCards();
+		this.displayCards();
+	},
 	gameEnd: function gameEnd() {
 		modal.classList.add('open');
 	}
 }
 
 // duplicate, shuffle and display all cards
-cards.duplicateCards();
-cards.shuffleCards();
-cards.displayCards();
+cards.startGame();
 
 // object to handle events (user interactions)
 let handlers = {
