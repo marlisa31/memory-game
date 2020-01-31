@@ -66,6 +66,7 @@ let cards = {
 			const formattedMinutes = numberFormatting(counterMinutes);
 			const formattedSeconds = numberFormatting(counterSeconds);
 
+			// print result to html
 			document.querySelector('.timer').innerHTML = formattedHours + ':' + formattedMinutes + ':' + formattedSeconds;
 		}, 1000);
 	},
@@ -76,9 +77,6 @@ let cards = {
 			setTimeout(this.gameEnd, 2050);
 		}
 	},
-	gameStart: function gameStart() {
-
-	},
 	gameEnd: function gameEnd() {
 		modal.classList.add('open');
 	}
@@ -88,8 +86,6 @@ let cards = {
 cards.duplicateCards();
 cards.shuffleCards();
 cards.displayCards();
-//cards.timerStart();
-cards.timer();
 
 // object to handle events (user interactions)
 let handlers = {
@@ -121,6 +117,10 @@ let handlers = {
 	},
 	moveCount: 0,
 	moveUpdate: function moveUpdate() {
+		// start timer once game is started
+		if (this.moveCount == 0){
+			cards.timer();
+		}
 		// update moves and assign them to span element
 		this.moveCount++;
 		document.querySelector('.move-amount').innerHTML = this.moveCount;
@@ -160,7 +160,6 @@ let handlers = {
 	},
 	closeModal: function closeModal() {
 		modal.classList.remove('open');
-		//console.log('closed it again')
 	}
 }
 
@@ -173,13 +172,3 @@ memoryWrap.addEventListener('click', handlers.generalHandling);
 // EventListener for closing modal
 const modal = document.querySelector('#modal');
 document.querySelector('.close').addEventListener('click', handlers.closeModal);
-
-
-
-	// PSEUDO CODE/ NOTES
-	// store all pictures in one array, each of them exists twice (array in array?).
-	// fill the 16 places in a random order with the existing pictures (places also array?)
-	// create one array for not found pairs and one for found pairs
-	// turn a card on click. When two cards are open, check if they are identical, if not, turn them around again and start over. If they are identical, leave them open and make them not clickable anymore. Take them out of the array?
-	// how to duplicate images so that they still have a reference to each other?
-	// remove blocker if cards are identical so user can continue playing immediately
