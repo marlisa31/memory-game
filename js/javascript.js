@@ -40,12 +40,44 @@ let cards = {
 			memoryCard.appendChild(memoryImage);
 		}
 	},
+	timer: function timer() {
+		// get initial time
+		let startingTime = new Date().getTime();
+
+		// interval function to subtract initial time from current time
+		let timeIteration = setInterval(function timeIteration() {
+			// get current time
+			const currentTime = new Date().getTime();
+
+			// get counter time
+			let counterTime = parseInt((currentTime - startingTime) / 1000); // get counter time and convert milliseconds to seconds
+			const counterHours = parseInt(counterTime / 3600); // hours: 3600 seconds in an hour
+			counterTime = parseInt(counterTime % 3600); // substract all full hours
+			const counterMinutes = parseInt(counterTime / 60) // minutes: 60 seconds in a minute
+			counterTime = parseInt(counterTime % 60); // substract all full minutes
+			const counterSeconds = parseInt(counterTime); // seconds
+
+			// format numbers to each have 2 digits
+			function numberFormatting(number) {
+				let prependingZero = ('0' + number).slice(-2);
+				return prependingZero;
+			}
+			const formattedHours = numberFormatting(counterHours);
+			const formattedMinutes = numberFormatting(counterMinutes);
+			const formattedSeconds = numberFormatting(counterSeconds);
+
+			document.querySelector('.timer').innerHTML = formattedHours + ':' + formattedMinutes + ':' + formattedSeconds;
+		}, 1000);
+	},
 	matchedPairs: 0,
 	matchesCheck: function matchesCheck() {
 		this.matchedPairs++;
 		if ((this.matchedPairs * 2) == this.images.length) {
 			setTimeout(this.gameEnd, 2050);
 		}
+	},
+	gameStart: function gameStart() {
+
 	},
 	gameEnd: function gameEnd() {
 		modal.classList.add('open');
@@ -56,7 +88,8 @@ let cards = {
 cards.duplicateCards();
 cards.shuffleCards();
 cards.displayCards();
-
+//cards.timerStart();
+cards.timer();
 
 // object to handle events (user interactions)
 let handlers = {
@@ -90,9 +123,7 @@ let handlers = {
 	moveUpdate: function moveUpdate() {
 		// update moves and assign them to span element
 		this.moveCount++;
-		console.log(this.moveCount);
 		document.querySelector('.move-amount').innerHTML = this.moveCount;
-
 	},
 	firstCard: '',
 	secondCard: '',
