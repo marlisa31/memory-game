@@ -9,17 +9,34 @@
 	<meta http-equiv="content-language" content="de" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
-	<link href="https://fonts.googleapis.com/css?family=Zilla+Slab:300,400,500,600&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:500|Roboto:300&display=swap" rel="stylesheet">
 </head>
 
 <body>
-	<h1>Memory Game</h1>
-	<div class="move-counter">
-		<p>Amount of moves: <span class="move-amount">0</span></p>
+	<h1>Memory</h1>
+	<p>Find pairs of matching cards</p>
+
+	<div class="game-status">
+		<div class="star-rating">
+			<span class="star star-1"></span>
+			<span class="star star-2"></span>
+			<span class="star star-3"></span>
+			<span class="star star-4"></span>
+			<span class="star star-5"></span>
+		</div>
+		<div class="move-counter">
+			<p>Moves: <span class="move-amount">0</span></p>
+		</div>
+		<div class="time-counter">
+			<p> Time: <span class="timer">00:00:00</span></p>
+		</div>
+		<div class="btn-wrap">
+			<a href="" class="refresh-wrap">
+				<img src="images/refresh.svg" class="icon refresh">
+			</a>
+		</div>
 	</div>
-	<div class="time-counter">
-		<p> Time: <span class="timer">00:00:00</span></p>
-	</div>
+
 	<div class="memory-wrap">
 	</div>
 
@@ -37,10 +54,6 @@
 			<a href="/">Play again</a>
 		</div>
 	</div>
-</div>
-
-<div class="btn-wrap">
-	<a href="" class="btn reset-btn">Reset</a>
 </div>
 
 <script src="js/javascript.js"></script>

@@ -2,18 +2,22 @@
 
 @dark-brown: #524040;
 @brown-shadow: #654f4f;
+@brown-light: #af9393;
 
 body {
 	background-color: @dark-brown;
-	font-family: "Zilla Slab", "sans-serif";
+	font-family: "Playfair Display", "sans-serif";
 }
 
-p, h1, h2, h3, h4 {
+p, h1, h2, h3, h4, a {
 	color: white;
 	text-align: center;
 	font-weight: 300;
 }
 
+p, a {
+	font-family: "Roboto", "sans-serif";
+}
 .test {
 	font-size: 18px;
 }
@@ -27,7 +31,7 @@ p, h1, h2, h3, h4 {
 // single memory cards
 .memory-card {
 	position: relative;
-	border: .5px solid fade(white, 50%);
+	border: 1px solid fade(white, 50%);
 	margin: 15px;
 	height: 12vw;
 	width: 12vw;
@@ -57,6 +61,30 @@ p, h1, h2, h3, h4 {
 	}
 	&.open, &.permanently-open {
 		transform: rotateY(-180deg);
+	}
+	&.permanently-open .memory-image {
+		background-color: fade(@brown-light, 10%);
+		transition: all 0.5s ease-in-out;
+		transition-delay: 1s;
+	}
+	&.wrong {
+		animation: shake 0.5s cubic-bezier() both;
+		transform: translate3d(0, 0, 0);
+		perspective: 1000px;
+	}
+	@keyframes shake {
+		10%, 90% {
+			transform: translate3d(-1px, 0, 0);
+		}
+		20%, 80% {
+			transform: translate3d(2px, 0, 0);
+		}
+		30%, 50%, 70% {
+			transform: translate3d(-4px, 0, 0);
+		}
+		40%, 60% {
+			transform: translate3d(4px, 0, 0);
+		}
 	}
 }
 
@@ -100,7 +128,24 @@ p, h1, h2, h3, h4 {
 	}
 }
 
+.star-rating {
+	text-align: center;
+}
+.star {
+	width: 20px;
+	height: 20px;
+	background-color: @brown-light;
+	-webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+	clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+	display: inline-block;
+	&.removed {
+		background-color: fade(@brown-light, 20%);
+	}
+}
 
+.refresh {
+	width: 20px;
+}
 
 // helpers
 

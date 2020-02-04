@@ -1,15 +1,20 @@
 body {
   background-color: #524040;
-  font-family: "Zilla Slab", "sans-serif";
+  font-family: "Playfair Display", "sans-serif";
 }
 p,
 h1,
 h2,
 h3,
-h4 {
+h4,
+a {
   color: white;
   text-align: center;
   font-weight: 300;
+}
+p,
+a {
+  font-family: "Roboto", "sans-serif";
 }
 .test {
   font-size: 18px;
@@ -21,7 +26,7 @@ h4 {
 }
 .memory-card {
   position: relative;
-  border: 0.5px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   margin: 15px;
   height: 12vw;
   width: 12vw;
@@ -58,6 +63,35 @@ h4 {
 .memory-card.permanently-open {
   transform: rotateY(-180deg);
 }
+.memory-card.permanently-open .memory-image {
+  background-color: rgba(175, 147, 147, 0.1);
+  transition: all 0.5s ease-in-out;
+  transition-delay: 1s;
+}
+.memory-card.wrong {
+  animation: shake 0.5s cubic-bezier() both;
+  transform: translate3d(0, 0, 0);
+  perspective: 1000px;
+}
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
 #modal {
   display: none;
   position: fixed;
@@ -92,6 +126,23 @@ h4 {
 }
 #modal .bar.bar-two {
   transform: rotate(-45deg);
+}
+.star-rating {
+  text-align: center;
+}
+.star {
+  width: 20px;
+  height: 20px;
+  background-color: #af9393;
+  -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  display: inline-block;
+}
+.star.removed {
+  background-color: rgba(175, 147, 147, 0.2);
+}
+.refresh {
+  width: 20px;
 }
 .bg-img {
   background-repeat: no-repeat;

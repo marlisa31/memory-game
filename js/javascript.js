@@ -12,7 +12,7 @@ let cards = {
 		this.images = duplicatedCards;
 	},
 	shuffleCards: function shuffleCards(){
-		for(let i = (this.images.length - 1); i > 0; i--){
+		for (let i = (this.images.length - 1); i > 0; i--){
 			const random = Math.floor(Math.random() * i);
 			const temporaryValue = this.images[i];
 			this.images[i] = this.images[random];
@@ -40,41 +40,11 @@ let cards = {
 			memoryCard.appendChild(memoryImage);
 		}
 	},
-	timer: function timer() {
-		// get initial time
-		let startingTime = new Date().getTime();
-
-		// interval function to subtract initial time from current time
-		let timeIteration = setInterval(function timeIteration() {
-			// get current time
-			const currentTime = new Date().getTime();
-
-			// get counter time
-			let counterTime = parseInt((currentTime - startingTime) / 1000); // get counter time and convert milliseconds to seconds
-			const counterHours = parseInt(counterTime / 3600); // hours: 3600 seconds in an hour
-			counterTime = parseInt(counterTime % 3600); // substract all full hours
-			const counterMinutes = parseInt(counterTime / 60) // minutes: 60 seconds in a minute
-			counterTime = parseInt(counterTime % 60); // substract all full minutes
-			const counterSeconds = parseInt(counterTime); // seconds
-
-			// format numbers to each have 2 digits
-			function numberFormatting(number) {
-				let prependingZero = ('0' + number).slice(-2);
-				return prependingZero;
-			}
-			const formattedHours = numberFormatting(counterHours);
-			const formattedMinutes = numberFormatting(counterMinutes);
-			const formattedSeconds = numberFormatting(counterSeconds);
-
-			// print result to html
-			document.querySelector('.timer').innerHTML = formattedHours + ':' + formattedMinutes + ':' + formattedSeconds;
-		}, 1000);
-	},
 	matchedPairs: 0,
 	matchesCheck: function matchesCheck() {
 		this.matchedPairs++;
 		if ((this.matchedPairs * 2) == this.images.length) {
-			setTimeout(this.gameEnd, 2050);
+			setTimeout(this.endGame, 2050); // leave time for second card to open properly
 		}
 	},
 	startGame: function startGame() {
@@ -82,9 +52,60 @@ let cards = {
 		this.shuffleCards();
 		this.displayCards();
 	},
-	gameEnd: function gameEnd() {
+	endGame: function endGame() {
 		modal.classList.add('open');
 	}
+}
+
+// object for all extras
+let extras = {
+	starAmount: 5,
+	removeStar: function removeStar() {
+		if(this.starAmount > -1){
+			document.querySelector('.star-'+this.starAmount).classList.add('removed');
+			this.starAmount--;
+		}
+	},
+	timer: function timer() {
+		// get initial time
+		let startingTime = new Date();
+
+		let timeIteration = setInterval(function timeIteration() {
+			const currentTime = new Date();
+			let counterTime = new Date(currentTime - startingTime);
+			const hours = counterTime.getUTCHours();
+			const minutes = counterTime.getMinutes();
+			const seconds = counterTime.getSeconds();
+
+			// format numbers to each have 2 digits
+			function numberFormatting(number) {
+				let prependingZero = ('0' + number).slice(-2);
+				return prependingZero;
+			}
+			const formattedHours = numberFormatting(hours);
+			const formattedMinutes = numberFormatting(minutes);
+			const formattedSeconds = numberFormatting(seconds);
+
+			// print result to html
+			document.querySelector('.timer').innerHTML = formattedHours + ':' + formattedMinutes + ':' + formattedSeconds;
+		}, 500);
+	},
+	moveCount: 0,
+	moveUpdate: function moveUpdate() {
+		// start timer once game is started
+		if (this.moveCount == 0){
+			this.timer();
+		}
+
+		// remove star after every eight move
+		if (this.moveCount % 8 == 0 && this.moveCount != 0) {
+			this.removeStar();
+		}
+
+		// update moves and assign them to span element
+		this.moveCount++;
+		document.querySelector('.move-amount').innerHTML = this.moveCount;
+	},
 }
 
 // duplicate, shuffle and display all cards
@@ -118,16 +139,6 @@ let handlers = {
 					item.classList.remove('open');
 			});
 	},
-	moveCount: 0,
-	moveUpdate: function moveUpdate() {
-		// start timer once game is started
-		if (this.moveCount == 0){
-			cards.timer();
-		}
-		// update moves and assign them to span element
-		this.moveCount++;
-		document.querySelector('.move-amount').innerHTML = this.moveCount;
-	},
 	firstCard: '',
 	secondCard: '',
 	openCardsCount: 0,
@@ -139,7 +150,7 @@ let handlers = {
 		// if first card during one move is turned over
 		if (this.openCardsCount == 1) {
 			this.firstCard = item.firstChild.nextSibling;
-			this.moveUpdate();
+			extras.moveUpdate();
 		}
 		// if second card during one move is turned over
 		else if (this.openCardsCount == 2) {
