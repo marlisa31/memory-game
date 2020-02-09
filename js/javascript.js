@@ -146,7 +146,7 @@ let handlers = {
 		function listening(){
 			memoryWrap.addEventListener('click', handlers.generalHandling);
 		}
-		setTimeout(listening, 2500);
+		setTimeout(listening, 2300);
 	},
 	showCard: function showCard(item) {
 			item.classList.add('open');
