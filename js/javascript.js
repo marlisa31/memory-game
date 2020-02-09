@@ -106,7 +106,6 @@ let extras = {
 
 			// print result to html
 			document.querySelector('.timer').innerHTML = formattedHours + ':' + formattedMinutes + ':' + formattedSeconds;
-			console.log(seconds);
 		}, 999);
 	},
 	moveCount: 0,
@@ -144,10 +143,10 @@ let handlers = {
 	},
 	delayHandling: function delayHandling() {
 		memoryWrap.removeEventListener('click', handlers.generalHandling);
-		function Listening(){
+		function listening(){
 			memoryWrap.addEventListener('click', handlers.generalHandling);
 		}
-		setTimeout(Listening, 2500);
+		setTimeout(listening, 2500);
 	},
 	showCard: function showCard(item) {
 			item.classList.add('open');
@@ -198,7 +197,7 @@ let handlers = {
 // convert NodeList of cards to array
 const memoryCards = Array.prototype.slice.apply(document.querySelectorAll('.memory-card'));
 
-// add EventListener to each of the cards
+// add EventListener to the wrap around memory card
 memoryWrap.addEventListener('click', handlers.generalHandling);
 
 // EventListener for closing modal
