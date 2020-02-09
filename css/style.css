@@ -1,6 +1,7 @@
 body {
   background-color: #524040;
   font-family: "Exo 2", "sans-serif";
+  margin: 0;
 }
 p,
 h1,
@@ -36,10 +37,11 @@ h1 {
   margin: 15px;
   height: 12vw;
   width: 12vw;
-  min-height: 100px;
-  min-width: 100px;
+  min-height: 150px;
+  min-width: 150px;
   transform-style: preserve-3d;
   transition: all 1s ease-in-out;
+  z-index: 1;
 }
 .memory-card .memory-cover,
 .memory-card .memory-image {
@@ -52,6 +54,7 @@ h1 {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 .memory-card .memory-cover {
@@ -62,6 +65,8 @@ h1 {
   background-size: cover;
 }
 .memory-card .memory-image {
+  -webkit-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
   transform: rotateY(-180deg);
 }
 .memory-card:not(.open):not(.permanently-open) {
@@ -69,6 +74,8 @@ h1 {
 }
 .memory-card.open,
 .memory-card.permanently-open {
+  -webkit-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
   transform: rotateY(-180deg);
 }
 .memory-card.permanently-open .memory-image {
@@ -85,15 +92,18 @@ h1 {
   align-items: center;
   top: 0;
   background-color: rgba(101, 79, 79, 0.85);
+  transition: all 0.5s ease-in-out;
 }
 #modal.open {
   display: flex;
+  transition: all 0.5s ease-in-out;
 }
 #modal .modal-content {
   background-color: #524040;
   padding: 40px;
   position: relative;
   min-width: 220px;
+  transition: all 0.5s ease;
 }
 #modal .modal-head {
   display: flex;
@@ -106,10 +116,17 @@ h1 {
   display: block;
 }
 #modal .bar.bar-one {
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 #modal .bar.bar-two {
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
   transform: rotate(-45deg);
+}
+#modal .bar:hover {
+  cursor: pointer;
 }
 #modal .congrats {
   font-family: "Exo 2", "sans-serif";
@@ -136,6 +153,8 @@ h1 {
   font-size: 13px;
   text-decoration: none;
   transition: all 0.3s ease;
+  margin-top: 20px;
+  display: block;
 }
 #modal .btn-again:hover {
   border-color: #af9393;
@@ -150,9 +169,18 @@ h1 {
 .info-item {
   width: 49%;
 }
+@media (max-width: 767px) {
+  .info-item {
+    width: 100%;
+  }
+}
 .game-status {
-  border-left: 1px solid rgba(255, 255, 255, 0.5);
   margin: 20px 0;
+}
+@media (min-width: 990px) {
+  .game-status {
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+  }
 }
 .status-items {
   display: flex;

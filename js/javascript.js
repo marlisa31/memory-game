@@ -63,7 +63,7 @@ let cards = {
 let extras = {
 	starAmount: 5,
 	removeStar: function removeStar() {
-		if(this.starAmount > 0){
+		if(this.starAmount > 1){
 			document.querySelector('.star-'+this.starAmount).classList.add('removed');
 			this.starAmount--;
 		}
