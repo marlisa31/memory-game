@@ -8,13 +8,18 @@
 @xs-breakpoint: 767px;
 @md-breakpoint: 990px;
 
+
+/*_________________________
+general
+_________________________*/
+
 body {
 	background-color: @brown-dark;
 	font-family: @font-family-first;
 	margin: 0;
 }
 
-p, h1, h2, h3, h4, a {
+p, h1, a {
 	color: white;
 	text-align: center;
 	font-weight: 300;
@@ -33,6 +38,70 @@ h1 {
 	margin: 1.5rem 0 0.5rem 0;
 }
 
+/*_________________________
+game status information
+_________________________*/
+
+.info {
+	border-bottom: 1px solid fade(white, 50%);
+	.flex-box;
+	margin-bottom: 5vh;
+}
+
+.info-item {
+	width: 49%;
+	@media(max-width: @xs-breakpoint) {
+		width: 100%;
+	}
+}
+
+.game-status {
+	margin: 20px 0;
+	@media(min-width: @md-breakpoint) {
+		border-left: 1px solid fade(white, 50%);
+	}
+}
+
+.status-items {
+	.flex-box;
+	.flex-box-justify(center);
+}
+
+.item {
+	padding: 0 10px;
+}
+
+.move, .time {
+	font-family: @font-family-first;
+	text-transform: uppercase;
+	font-weight: 600;
+	margin-right: 5px;
+}
+
+.star-rating {
+	text-align: center;
+}
+
+.star {
+	width: 20px;
+	height: 20px;
+	background-color: @brown-light;
+	-webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+	clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+	display: inline-block;
+	&.removed {
+		background-color: fade(@brown-light, 20%);
+	}
+}
+
+.refresh {
+	width: 18px;
+}
+
+/*_________________________
+memory cards
+_________________________*/
+
 .memory-wrap {
 	.flex-box;
 	.flex-box-justify(center);
@@ -46,12 +115,12 @@ h1 {
 	margin: 15px;
 	height: 12vw;
 	width: 12vw;
-	min-height: 150px;
-	min-width: 150px;
+	min-height: 80px;
+	min-width: 80px;
 	.transform-style(preserve-3d);
-	.transition(1s; ease-in-out);
+	.slow-transition;
 	z-index: 1;
-	//perspective: 1000px;
+
 	.memory-cover, .memory-image {
 		position: absolute;
 		top: 0;
@@ -62,25 +131,34 @@ h1 {
 		.bg-img;
 		.backface-visibility(hidden);
 	}
+
 	.memory-cover {
 		height: 100%;
 		width: 100%;
 		.bg-img;
 	}
+
 	.memory-image {
 			.transform(rotateY(-180deg));
 	}
+
 	&:not(.open):not(.permanently-open){
 		cursor: pointer;
 	}
+
 	&.open, &.permanently-open {
 		.transform(rotateY(-180deg));
 	}
+
 	&.permanently-open .memory-image {
 		background-color: fade(@brown-light, 15%);
-		.transition(0.5s; ease-in-out; 1s);
+		.transition-delayed;
 	}
 }
+
+/*_________________________
+modal
+_________________________*/
 
 #modal {
 	display: none;
@@ -91,23 +169,27 @@ h1 {
 	.flex-box-align(center);
 	top: 0;
 	background-color: fade(@brown-shadow, 85%);
-	.transition(0.5s; ease-in-out);
+	.standard-transition;
+
 	&.open {
 		.flex-box;
-		.transition(0.5s; ease-in-out);
+		.standard-transition;
 	}
+
 	.modal-content {
 		background-color: @brown-dark;
 		padding: 40px;
 		position: relative;
 		min-width: 220px;
-		.transition(0.5s; ease);
+		.standard-transition;
 	}
+
 	// close
 	.modal-head {
 		.flex-box;
 		.flex-box-justify(flex-end);
 	}
+
 	.bar {
 		background-color: white;
     width: 30px;
@@ -123,6 +205,7 @@ h1 {
 			cursor: pointer;
 		}
 	}
+
 	.congrats {
 		font-family: @font-family-first;
 		text-transform: uppercase;
@@ -130,13 +213,16 @@ h1 {
 		letter-spacing: 0.05em;
 		margin-top: 40px;
 	}
+
 	.modal-item {
 		.flex-box;
 		.flex-box-justify(center);
 	}
+
 	.star-rating-wrap {
 		margin: 0.75em 0;
 	}
+
 	.btn-again {
 		padding: 10px 20px;
 		background-color: transparent;
@@ -147,66 +233,19 @@ h1 {
 		letter-spacing: 0.05em;
 		font-size: 13px;
 		text-decoration: none;
-		.transition(0.3s; ease);
+		.fast-transition;
 		margin-top: 20px;
 		display: block;
 		&:hover {
 			border-color: @brown-light;
-			.transition(0.3s; ease);
+			.fast-transition;
 		}
 	}
 }
 
-// game status
-.info {
-	border-bottom: 1px solid fade(white, 50%);
-	.flex-box;
-	margin-bottom: 5vh;
-}
-.info-item {
-	width: 49%;
-	@media(max-width: @xs-breakpoint){
-		width: 100%;
-	}
-}
-.game-status {
-	margin: 20px 0;
-	@media(min-width: @md-breakpoint){
-		border-left: 1px solid fade(white, 50%);
-	}
-}
-.status-items {
-	.flex-box;
-	.flex-box-justify(center);
-}
-.item {
-	padding: 0 10px;
-}
-.move, .time {
-	font-family: @font-family-first;
-	text-transform: uppercase;
-	font-weight: 600;
-	margin-right: 5px;
-}
-.star-rating {
-	text-align: center;
-}
-.star {
-	width: 20px;
-	height: 20px;
-	background-color: @brown-light;
-	-webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-	clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-	display: inline-block;
-	&.removed {
-		background-color: fade(@brown-light, 20%);
-	}
-}
-.refresh {
-	width: 18px;
-}
-
-// helpers
+/*_________________________
+helpers
+_________________________*/
 
 .bg-img {
 	background-repeat: no-repeat;
@@ -219,10 +258,12 @@ h1 {
 		-ms-transform: @transformation;
 				transform: @transformation;
 }
+
 .backface-visibility(@visibility){
 	-webkit-backface-visibility: @visibility;
   backface-visibility: @visibility;
 }
+
 .flex-box {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -232,25 +273,46 @@ h1 {
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
 }
+
 .flex-box-justify(@direction) {
 	-webkit-box-pack: @direction;
   -ms-flex-pack: @direction;
   justify-content: @direction;
 }
+
 .flex-box-align(@direction) {
 	-webkit-box-align: @direction;
   -ms-flex-align: @direction;
   align-items: @direction;
 }
+
 .perspective(@perspective) {
 	-webkit-perspective: @perspective;
 	perspective: @perspective;
 }
 
-.transition(@duration; @type; @delay) {
-	-webkit-transition: all @duration @type @delay;
-	-o-transition: all @duration @type @delay;
-	transition: all @duration @type @delay;
+.standard-transition {
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
+.slow-transition {
+	-webkit-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
+}
+
+.fast-transition {
+	-webkit-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+.transition-delayed {
+	-webkit-transition: all 0.5s ease-in-out 1s;
+	-o-transition: all 0.5s ease-in-out 1s;
+	transition: all 0.5s ease-in-out 1s;
 }
 
 .transform-style(@style) {

@@ -1,5 +1,9 @@
 const memoryWrap = document.querySelector('.memory-wrap');
 
+/*_________________________
+objects
+_________________________*/
+
 // object for data in the images array plus methods to change the array
 let cards = {
 	images: ['img_01.svg', 'img_02.svg', 'img_03.svg', 'img_04.svg', 'img_05.svg', 'img_06.svg', 'img_07.svg', 'img_08.svg'],
@@ -44,7 +48,6 @@ let cards = {
 	matchesCheck: function matchesCheck() {
 		this.matchedPairs++;
 		if ((this.matchedPairs * 2) == this.images.length) {
-			//print out score
 			setTimeout(this.endGame, 2050); // leave time for the second card to open properly
 		}
 	},
@@ -59,7 +62,7 @@ let cards = {
 	}
 }
 
-// object for all extras
+// object for all extra functionalities
 let extras = {
 	starAmount: 5,
 	removeStar: function removeStar() {
@@ -90,7 +93,7 @@ let extras = {
 			}
 
 			const currentTime = new Date();
-			let counterTime = new Date(currentTime - startingTime);
+			const counterTime = new Date(currentTime - startingTime);
 			const hours = counterTime.getUTCHours();
 			const minutes = counterTime.getMinutes();
 			const seconds = counterTime.getSeconds();
@@ -125,9 +128,6 @@ let extras = {
 	},
 }
 
-// duplicate, shuffle and display all cards
-cards.startGame();
-
 // object to handle events (user interactions)
 let handlers = {
 	generalHandling: function generalHandling(event) {
@@ -135,7 +135,7 @@ let handlers = {
 		// exit function if selected target is not correct
 	  if (!event.target.matches('.memory-cover')) return;
 
-		// select parent element of .memory-cover which is .memory-card
+		// select parent element of .memory-cover (.memory-card)
 		const memoryCard = event.target.parentNode;
 		handlers.showCard(memoryCard);
 		handlers.openCardsIncrease(memoryCard);
@@ -193,6 +193,13 @@ let handlers = {
 		modal.classList.remove('open');
 	}
 }
+
+/*_________________________
+actions
+_________________________*/
+
+// duplicate, shuffle and display all cards
+cards.startGame();
 
 // convert NodeList of cards to array
 const memoryCards = Array.prototype.slice.apply(document.querySelectorAll('.memory-card'));

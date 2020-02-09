@@ -1,3 +1,6 @@
+/*_________________________
+general
+_________________________*/
 body {
   background-color: #524040;
   font-family: "Exo 2", "sans-serif";
@@ -5,9 +8,6 @@ body {
 }
 p,
 h1,
-h2,
-h3,
-h4,
 a {
   color: white;
   text-align: center;
@@ -25,6 +25,78 @@ h1 {
   font-size: 3rem;
   margin: 1.5rem 0 0.5rem 0;
 }
+/*_________________________
+game status information
+_________________________*/
+.info {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  margin-bottom: 5vh;
+}
+.info-item {
+  width: 49%;
+}
+@media (max-width: 767px) {
+  .info-item {
+    width: 100%;
+  }
+}
+.game-status {
+  margin: 20px 0;
+}
+@media (min-width: 990px) {
+  .game-status {
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+  }
+}
+.status-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.item {
+  padding: 0 10px;
+}
+.move,
+.time {
+  font-family: "Exo 2", "sans-serif";
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-right: 5px;
+}
+.star-rating {
+  text-align: center;
+}
+.star {
+  width: 20px;
+  height: 20px;
+  background-color: #af9393;
+  -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  display: inline-block;
+}
+.star.removed {
+  background-color: rgba(175, 147, 147, 0.2);
+}
+.refresh {
+  width: 18px;
+}
+/*_________________________
+memory cards
+_________________________*/
 .memory-wrap {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -45,8 +117,8 @@ h1 {
   margin: 15px;
   height: 12vw;
   width: 12vw;
-  min-height: 150px;
-  min-width: 150px;
+  min-height: 80px;
+  min-width: 80px;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   -webkit-transition: all 1s ease-in-out;
@@ -91,11 +163,13 @@ h1 {
 }
 .memory-card.permanently-open .memory-image {
   background-color: rgba(175, 147, 147, 0.15);
-  -webkit-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-  transition-delay: 1s;
+  -webkit-transition: all 0.5s ease-in-out 1s;
+  -o-transition: all 0.5s ease-in-out 1s;
+  transition: all 0.5s ease-in-out 1s;
 }
+/*_________________________
+modal
+_________________________*/
 #modal {
   display: none;
   position: fixed;
@@ -109,9 +183,9 @@ h1 {
   align-items: center;
   top: 0;
   background-color: rgba(101, 79, 79, 0.85);
-  -webkit-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 #modal.open {
   display: -webkit-box;
@@ -121,9 +195,9 @@ h1 {
   -webkit-box-direction: normal;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
-  -webkit-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 #modal .modal-content {
   background-color: #524040;
@@ -209,72 +283,9 @@ h1 {
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
-.info {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap;
-  margin-bottom: 5vh;
-}
-.info-item {
-  width: 49%;
-}
-@media (max-width: 767px) {
-  .info-item {
-    width: 100%;
-  }
-}
-.game-status {
-  margin: 20px 0;
-}
-@media (min-width: 990px) {
-  .game-status {
-    border-left: 1px solid rgba(255, 255, 255, 0.5);
-  }
-}
-.status-items {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-.item {
-  padding: 0 10px;
-}
-.move,
-.time {
-  font-family: "Exo 2", "sans-serif";
-  text-transform: uppercase;
-  font-weight: 600;
-  margin-right: 5px;
-}
-.star-rating {
-  text-align: center;
-}
-.star {
-  width: 20px;
-  height: 20px;
-  background-color: #af9393;
-  -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-  display: inline-block;
-}
-.star.removed {
-  background-color: rgba(175, 147, 147, 0.2);
-}
-.refresh {
-  width: 18px;
-}
+/*_________________________
+helpers
+_________________________*/
 .bg-img {
   background-repeat: no-repeat;
   background-position: center;
@@ -288,4 +299,24 @@ h1 {
   -webkit-box-direction: normal;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
+}
+.standard-transition {
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.slow-transition {
+  -webkit-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+.fast-transition {
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.transition-delayed {
+  -webkit-transition: all 0.5s ease-in-out 1s;
+  -o-transition: all 0.5s ease-in-out 1s;
+  transition: all 0.5s ease-in-out 1s;
 }
