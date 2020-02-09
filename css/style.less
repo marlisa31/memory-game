@@ -1,12 +1,14 @@
 // out: style.css, sourcemap: false, compress: true;
 
-@dark-brown: #524040;
+@brown-dark: #524040;
 @brown-shadow: #654f4f;
 @brown-light: #af9393;
+@font-family-first: "Exo 2", "sans-serif";
+@font-family-second: "Roboto", "sans-serif";
 
 body {
-	background-color: @dark-brown;
-	font-family: "Playfair Display", "sans-serif";
+	background-color: @brown-dark;
+	font-family: @font-family-first;
 }
 
 p, h1, h2, h3, h4, a {
@@ -16,15 +18,22 @@ p, h1, h2, h3, h4, a {
 }
 
 p, a {
-	font-family: "Roboto", "sans-serif";
+	font-family: @font-family-second;
+	font-size: 14px;
 }
-.test {
-	font-size: 18px;
+
+h1 {
+	text-transform: uppercase;
+	font-weight: 200;
+	letter-spacing: 0.05em;
+	font-size: 3rem;
+	margin: 1.5rem 0 0.5rem 0;
 }
 
 .memory-wrap {
 	display: flex;
 	flex-flow: row wrap;
+	justify-content: center;
   perspective: 1000px;
 }
 
@@ -35,20 +44,21 @@ p, a {
 	margin: 15px;
 	height: 12vw;
 	width: 12vw;
+	min-height: 100px;
+	min-width: 100px;
   transform-style: preserve-3d;
   transition: all 1s ease-in-out;
 	.memory-cover, .memory-image {
 		position: absolute;
 		top: 0;
 		left: 0;
-		background-color: @dark-brown;
+		background-color: @brown-dark;
 		width: 100%;
 		height: 100%;
 		.bg-img;
 		backface-visibility: hidden;
 	}
 	.memory-cover {
-		//background-image: url(../images/back.svg);
 		height: 100%;
 		width: 100%;
 		.bg-img;
@@ -63,28 +73,9 @@ p, a {
 		transform: rotateY(-180deg);
 	}
 	&.permanently-open .memory-image {
-		background-color: fade(@brown-light, 10%);
+		background-color: fade(@brown-light, 15%);
 		transition: all 0.5s ease-in-out;
 		transition-delay: 1s;
-	}
-	&.wrong {
-		animation: shake 0.5s cubic-bezier() both;
-		transform: translate3d(0, 0, 0);
-		perspective: 1000px;
-	}
-	@keyframes shake {
-		10%, 90% {
-			transform: translate3d(-1px, 0, 0);
-		}
-		20%, 80% {
-			transform: translate3d(2px, 0, 0);
-		}
-		30%, 50%, 70% {
-			transform: translate3d(-4px, 0, 0);
-		}
-		40%, 60% {
-			transform: translate3d(4px, 0, 0);
-		}
 	}
 }
 
@@ -96,12 +87,14 @@ p, a {
 	justify-content: center;
 	align-items: center;
 	top: 0;
-	background-color: fade(@brown-shadow, 93%);
+	background-color: fade(@brown-shadow, 85%);
+	//transition: all 0.5s ease-in-out 1s;
 	&.open {
 		display: flex;
+		//transition: all 0.5s ease-in-out 1s;
 	}
 	.modal-content {
-		background-color: @dark-brown;
+		background-color: @brown-dark;
 		padding: 40px;
 		position: relative;
 		min-width: 220px;
@@ -110,9 +103,6 @@ p, a {
 	.modal-head {
 		display: flex;
 		justify-content: flex-end;
-	}
-	.close {
-
 	}
 	.bar {
 		background-color: white;
@@ -126,8 +116,66 @@ p, a {
 			transform: rotate(-45deg);
 		}
 	}
+	.congrats {
+		font-family: @font-family-first;
+		text-transform: uppercase;
+		font-size: 1.4rem;
+		letter-spacing: 0.05em;
+		margin-top: 40px;
+	}
+	.modal-item {
+		display: flex;
+		justify-content: center;
+	}
+	.star-rating-wrap {
+		margin: 0.75em 0;
+	}
+	.btn-again {
+		padding: 10px 20px;
+		background-color: transparent;
+		border: 1px solid white;
+		color: white;
+		font-family: @font-family-first;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		font-size: 13px;
+		text-decoration: none;
+		transition: all 0.3s ease;
+		&:hover {
+			border-color: @brown-light;
+			transition: all 0.3s ease;
+		}
+	}
 }
 
+// game status
+.info {
+	border-bottom: 1px solid fade(white, 50%);
+	display: flex;
+	flex-flow: row wrap;
+	margin-bottom: 5vh;
+}
+.info-item {
+	width: 49%;
+}
+.game-status {
+	border-left: 1px solid fade(white, 50%);
+	margin: 20px 0;
+}
+.status-items {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+.item {
+	padding: 0 10px;
+}
+.move, .time {
+	font-family: @font-family-first;
+	text-transform: uppercase;
+	font-weight: 600;
+	margin-right: 5px;
+}
 .star-rating {
 	text-align: center;
 }
@@ -142,9 +190,8 @@ p, a {
 		background-color: fade(@brown-light, 20%);
 	}
 }
-
 .refresh {
-	width: 20px;
+	width: 18px;
 }
 
 // helpers

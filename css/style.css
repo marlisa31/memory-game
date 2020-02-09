@@ -1,6 +1,6 @@
 body {
   background-color: #524040;
-  font-family: "Playfair Display", "sans-serif";
+  font-family: "Exo 2", "sans-serif";
 }
 p,
 h1,
@@ -15,13 +15,19 @@ a {
 p,
 a {
   font-family: "Roboto", "sans-serif";
+  font-size: 14px;
 }
-.test {
-  font-size: 18px;
+h1 {
+  text-transform: uppercase;
+  font-weight: 200;
+  letter-spacing: 0.05em;
+  font-size: 3rem;
+  margin: 1.5rem 0 0.5rem 0;
 }
 .memory-wrap {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
   perspective: 1000px;
 }
 .memory-card {
@@ -30,6 +36,8 @@ a {
   margin: 15px;
   height: 12vw;
   width: 12vw;
+  min-height: 100px;
+  min-width: 100px;
   transform-style: preserve-3d;
   transition: all 1s ease-in-out;
 }
@@ -64,33 +72,9 @@ a {
   transform: rotateY(-180deg);
 }
 .memory-card.permanently-open .memory-image {
-  background-color: rgba(175, 147, 147, 0.1);
+  background-color: rgba(175, 147, 147, 0.15);
   transition: all 0.5s ease-in-out;
   transition-delay: 1s;
-}
-.memory-card.wrong {
-  animation: shake 0.5s cubic-bezier() both;
-  transform: translate3d(0, 0, 0);
-  perspective: 1000px;
-}
-@keyframes shake {
-  10%,
-  90% {
-    transform: translate3d(-1px, 0, 0);
-  }
-  20%,
-  80% {
-    transform: translate3d(2px, 0, 0);
-  }
-  30%,
-  50%,
-  70% {
-    transform: translate3d(-4px, 0, 0);
-  }
-  40%,
-  60% {
-    transform: translate3d(4px, 0, 0);
-  }
 }
 #modal {
   display: none;
@@ -100,7 +84,7 @@ a {
   justify-content: center;
   align-items: center;
   top: 0;
-  background-color: rgba(101, 79, 79, 0.93);
+  background-color: rgba(101, 79, 79, 0.85);
 }
 #modal.open {
   display: flex;
@@ -127,6 +111,64 @@ a {
 #modal .bar.bar-two {
   transform: rotate(-45deg);
 }
+#modal .congrats {
+  font-family: "Exo 2", "sans-serif";
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  margin-top: 40px;
+}
+#modal .modal-item {
+  display: flex;
+  justify-content: center;
+}
+#modal .star-rating-wrap {
+  margin: 0.75em 0;
+}
+#modal .btn-again {
+  padding: 10px 20px;
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  font-family: "Exo 2", "sans-serif";
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 13px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+#modal .btn-again:hover {
+  border-color: #af9393;
+  transition: all 0.3s ease;
+}
+.info {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 5vh;
+}
+.info-item {
+  width: 49%;
+}
+.game-status {
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  margin: 20px 0;
+}
+.status-items {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+.item {
+  padding: 0 10px;
+}
+.move,
+.time {
+  font-family: "Exo 2", "sans-serif";
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-right: 5px;
+}
 .star-rating {
   text-align: center;
 }
@@ -142,7 +184,7 @@ a {
   background-color: rgba(175, 147, 147, 0.2);
 }
 .refresh {
-  width: 20px;
+  width: 18px;
 }
 .bg-img {
   background-repeat: no-repeat;

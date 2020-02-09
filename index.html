@@ -9,53 +9,71 @@
 	<meta http-equiv="content-language" content="de" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
-	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:500|Roboto:300&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Exo+2:200,600|Roboto:300&display=swap" rel="stylesheet">
 </head>
 
 <body>
-	<h1>Memory</h1>
-	<p>Find pairs of matching cards</p>
-
-	<div class="game-status">
-		<div class="star-rating">
-			<span class="star star-1"></span>
-			<span class="star star-2"></span>
-			<span class="star star-3"></span>
-			<span class="star star-4"></span>
-			<span class="star star-5"></span>
-		</div>
-		<div class="move-counter">
-			<p>Moves: <span class="move-amount">0</span></p>
-		</div>
-		<div class="time-counter">
-			<p> Time: <span class="timer">00:00:00</span></p>
-		</div>
-		<div class="btn-wrap">
-			<a href="" class="refresh-wrap">
-				<img src="images/refresh.svg" class="icon refresh">
-			</a>
-		</div>
-	</div>
-
-	<div class="memory-wrap">
-	</div>
-
-<div id="modal">
-	<div class="modal-content">
-		<div class="modal-head">
-			<div class="close">
-				<span class="bar bar-one"> </span>
-				<span class="bar bar-two"></span>
+	<div class="page-wrap">
+		<div class="info">
+			<div class="info-item headline">
+				<h1>Memory</h1>
 			</div>
-	</div>
-		<div class="text">
-			<p>You won!</p>
-			<p>Completion time: </p>
-			<a href="/">Play again</a>
+			<div class="info-item game-status">
+				<div class="status-items top">
+					<div class="item star-rating">
+						<span class="star star-1"></span>
+						<span class="star star-2"></span>
+						<span class="star star-3"></span>
+						<span class="star star-4"></span>
+						<span class="star star-5"></span>
+					</div>
+
+					<div class="item btn-wrap">
+						<a href="" class="refresh-wrap">
+							<img src="images/refresh.svg" class="icon refresh">
+						</a>
+					</div>
+				</div>
+
+				<div class="status-items bottom">
+					<div class="item move-counter">
+						<p><span class="move">Moves:</span><span class="move-amount">0</span></p>
+					</div>
+					<div class="item time-counter">
+						<p><span class="time"> Time:</span> <span class="timer">00:00:00</span></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="memory-wrap">
+		</div>
+
+	<div id="modal">
+		<div class="modal-content">
+			<div class="modal-head">
+				<div class="close">
+					<span class="bar bar-one"> </span>
+					<span class="bar bar-two"></span>
+				</div>
+		</div>
+			<div class="text">
+				<div class="modal-item"><p class="congrats">Congrats, you won!</p></div>
+				<div class="modal-item"><p>Completion time: <span class="completion"></span></div>
+				<div class="modal-item">
+					<p>Star rating:</p>
+					<span class="star-rating-wrap">
+					</span>
+				</div>
+				<div class="modal-item">
+					<p class="play-again">
+						<a href="/" class="btn-again">Play again</a>
+					</p>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
-
 <script src="js/javascript.js"></script>
 </body>
 

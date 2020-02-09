@@ -28,23 +28,24 @@ let cards = {
 			memoryCard.classList.add('card-'+[i +1]);
 			memoryWrap.appendChild(memoryCard);
 
-			// create and append memory cover (child)
+			// create and append memory cover (child 1)
 			let memoryCover = document.createElement('div');
 			memoryCover.setAttribute('class', 'memory-cover');
 			memoryCard.appendChild(memoryCover);
 
-			// create and append memory image (child)
+			// create and append memory image (child 2)
 			let memoryImage = document.createElement('div');
 			memoryImage.setAttribute('class', 'memory-image');
 			memoryImage.setAttribute('style', 'background-image:url("images/' + this.images[i] + '")');
 			memoryCard.appendChild(memoryImage);
 		}
 	},
-	matchedPairs: 0,
+	matchedPairs: 7,
 	matchesCheck: function matchesCheck() {
 		this.matchedPairs++;
 		if ((this.matchedPairs * 2) == this.images.length) {
-			setTimeout(this.endGame, 2050); // leave time for second card to open properly
+			//print out score
+			setTimeout(this.endGame, 2050); // leave time for the second card to open properly
 		}
 	},
 	startGame: function startGame() {
@@ -54,6 +55,7 @@ let cards = {
 	},
 	endGame: function endGame() {
 		modal.classList.add('open');
+		extras.cloneStars();
 	}
 }
 
@@ -61,16 +63,32 @@ let cards = {
 let extras = {
 	starAmount: 5,
 	removeStar: function removeStar() {
-		if(this.starAmount > -1){
+		if(this.starAmount > 0){
 			document.querySelector('.star-'+this.starAmount).classList.add('removed');
 			this.starAmount--;
 		}
 	},
+	cloneStars: function cloneStars() {
+		const starsClone =	document.querySelector('.star-rating').cloneNode(true);
+		document.querySelector('.star-rating-wrap').appendChild(starsClone);
+	},
 	timer: function timer() {
-		// get initial time
 		let startingTime = new Date();
 
+		// declare variables outside function so they can be accessed at the very beginning of the function already
+		let formattedHours;
+		let formattedMinutes;
+		let formattedSeconds;
+
 		let timeIteration = setInterval(function timeIteration() {
+
+			// stop timer at end of game and print time of completion to modal
+			if ((cards.matchedPairs * 2) == cards.images.length) {
+				clearInterval(timeIteration);
+				document.querySelector('.completion').innerHTML = formattedHours + ':' + formattedMinutes + ':' + formattedSeconds;
+				return;
+			}
+
 			const currentTime = new Date();
 			let counterTime = new Date(currentTime - startingTime);
 			const hours = counterTime.getUTCHours();
@@ -82,17 +100,17 @@ let extras = {
 				let prependingZero = ('0' + number).slice(-2);
 				return prependingZero;
 			}
-			const formattedHours = numberFormatting(hours);
-			const formattedMinutes = numberFormatting(minutes);
-			const formattedSeconds = numberFormatting(seconds);
+			formattedHours = numberFormatting(hours);
+			formattedMinutes = numberFormatting(minutes);
+			formattedSeconds = numberFormatting(seconds);
 
 			// print result to html
 			document.querySelector('.timer').innerHTML = formattedHours + ':' + formattedMinutes + ':' + formattedSeconds;
-		}, 500);
+			console.log(seconds);
+		}, 999);
 	},
 	moveCount: 0,
 	moveUpdate: function moveUpdate() {
-		// start timer once game is started
 		if (this.moveCount == 0){
 			this.timer();
 		}
@@ -185,4 +203,4 @@ memoryWrap.addEventListener('click', handlers.generalHandling);
 
 // EventListener for closing modal
 const modal = document.querySelector('#modal');
-document.querySelector('.close').addEventListener('click', handlers.closeModal);
+document.querySelector('#modal').addEventListener('click', handlers.closeModal);
