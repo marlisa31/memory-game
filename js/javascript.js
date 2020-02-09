@@ -44,7 +44,7 @@ let cards = {
 			memoryCard.appendChild(memoryImage);
 		}
 	},
-	matchedPairs: 7,
+	matchedPairs: 0,
 	matchesCheck: function matchesCheck() {
 		this.matchedPairs++;
 		if ((this.matchedPairs * 2) == this.images.length) {
@@ -164,12 +164,12 @@ let handlers = {
 	},
 	openCardsCheck: function openCardsCheck(item) {
 
-		// if first card during one move is turned over
+		// if first card during move is turned over
 		if (this.openCardsCount == 1) {
 			this.firstCard = item.firstChild.nextSibling;
 			extras.moveUpdate();
 		}
-		// if second card during one move is turned over
+		// if second card during move is turned over
 		else if (this.openCardsCount == 2) {
 			this.secondCard = item.firstChild.nextSibling;
 			handlers.compareCards();
