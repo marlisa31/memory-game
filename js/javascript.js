@@ -182,7 +182,7 @@ let handlers = {
 	},
 	compareCards: function compareCards() {
 
-		// compare if first and second card are identical
+	    // compare if first and second card are identical
 		if (this.firstCard.style.backgroundImage == this.secondCard.style.backgroundImage) {
 			this.firstCard.parentNode.classList.add('permanently-open');
 			this.secondCard.parentNode.classList.add('permanently-open');
