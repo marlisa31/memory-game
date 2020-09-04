@@ -14,28 +14,28 @@ general
 _________________________*/
 
 body {
-	background-color: @brown-dark;
-	font-family: @font-family-first;
-	margin: 0;
+    background-color: @brown-dark;
+    font-family: @font-family-first;
+    margin: 0;
 }
 
 p, h1, a {
-	color: white;
-	text-align: center;
-	font-weight: 300;
+    color: white;
+    text-align: center;
+    font-weight: 300;
 }
 
 p, a {
-	font-family: @font-family-second;
-	font-size: 14px;
+    font-family: @font-family-second;
+    font-size: 14px;
 }
 
 h1 {
-	text-transform: uppercase;
-	font-weight: 200;
-	letter-spacing: 0.05em;
-	font-size: 3rem;
-	margin: 1.5rem 0 0.5rem 0;
+    text-transform: uppercase;
+    font-weight: 200;
+    letter-spacing: 0.05em;
+    font-size: 3rem;
+    margin: 1.5rem 0 0.5rem 0;
 }
 
 /*_________________________
@@ -43,59 +43,59 @@ game status information
 _________________________*/
 
 .info {
-	border-bottom: 1px solid fade(white, 50%);
-	.flex-box;
-	margin-bottom: 5vh;
+    border-bottom: 1px solid fade(white, 50%);
+    .flex-box;
+    margin-bottom: 5vh;
 }
 
 .info-item {
-	width: 49%;
-	@media(max-width: @xs-breakpoint) {
-		width: 100%;
-	}
+    width: 49%;
+    @media(max-width: @xs-breakpoint) {
+        width: 100%;
+    }
 }
 
 .game-status {
-	margin: 20px 0;
-	@media(min-width: @md-breakpoint) {
-		border-left: 1px solid fade(white, 50%);
-	}
+    margin: 20px 0;
+    @media(min-width: @md-breakpoint) {
+        border-left: 1px solid fade(white, 50%);
+    }
 }
 
 .status-items {
-	.flex-box;
-	.flex-box-justify(center);
+    .flex-box;
+    .flex-box-justify(center);
 }
 
 .item {
-	padding: 0 10px;
+    padding: 0 10px;
 }
 
 .move, .time {
-	font-family: @font-family-first;
-	text-transform: uppercase;
-	font-weight: 600;
-	margin-right: 5px;
+    font-family: @font-family-first;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-right: 5px;
 }
 
 .star-rating {
-	text-align: center;
+    text-align: center;
 }
 
 .star {
-	width: 20px;
-	height: 20px;
-	background-color: @brown-light;
-	-webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-	clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-	display: inline-block;
-	&.removed {
-		background-color: fade(@brown-light, 20%);
-	}
+    width: 20px;
+    height: 20px;
+    background-color: @brown-light;
+    -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    display: inline-block;
+    &.removed {
+        background-color: fade(@brown-light, 20%);
+    }
 }
 
 .refresh {
-	width: 18px;
+    width: 18px;
 }
 
 /*_________________________
@@ -103,57 +103,57 @@ memory cards
 _________________________*/
 
 .memory-wrap {
-	.flex-box;
-	.flex-box-justify(center);
-	.perspective(1000px);
+    .flex-box;
+    .flex-box-justify(center);
+    .perspective(1000px);
 }
 
 // single memory cards
 .memory-card {
-	position: relative;
-	border: 1px solid fade(white, 50%);
-	margin: 15px;
-	height: 12vw;
-	width: 12vw;
-	min-height: 80px;
-	min-width: 80px;
-	.transform-style(preserve-3d);
-	.slow-transition;
-	z-index: 1;
+    position: relative;
+    border: 1px solid fade(white, 50%);
+    margin: 15px;
+    height: 12vw;
+    width: 12vw;
+    min-height: 80px;
+    min-width: 80px;
+    .transform-style(preserve-3d);
+    .slow-transition;
+    z-index: 1;
 
-	.memory-cover, .memory-image {
-		position: absolute;
-		top: 0;
-		left: 0;
-		background-color: @brown-dark;
-		width: 100%;
-		height: 100%;
-		.bg-img;
-		.backface-visibility(hidden);
-	}
+    .memory-cover, .memory-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: @brown-dark;
+        width: 100%;
+        height: 100%;
+        .bg-img;
+        .backface-visibility(hidden);
+    }
 
-	.memory-cover {
-		height: 100%;
-		width: 100%;
-		.bg-img;
-	}
+    .memory-cover {
+        height: 100%;
+        width: 100%;
+        .bg-img;
+    }
 
-	.memory-image {
-			.transform(rotateY(-180deg));
-	}
+    .memory-image {
+        .transform(rotateY(-180deg));
+    }
 
-	&:not(.open):not(.permanently-open){
-		cursor: pointer;
-	}
+    &:not(.open):not(.permanently-open){
+        cursor: pointer;
+    }
 
-	&.open, &.permanently-open {
-		.transform(rotateY(-180deg));
-	}
+    &.open, &.permanently-open {
+        .transform(rotateY(-180deg));
+    }
 
-	&.permanently-open .memory-image {
-		background-color: fade(@brown-light, 15%);
-		.transition-delayed;
-	}
+    &.permanently-open .memory-image {
+        background-color: fade(@brown-light, 15%);
+        .transition-delayed;
+    }
 }
 
 /*_________________________
@@ -161,90 +161,90 @@ modal
 _________________________*/
 
 #modal {
-	display: none;
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	.flex-box-justify(center);
-	.flex-box-align(center);
-	top: 0;
-	background-color: fade(@brown-shadow, 85%);
-	.standard-transition;
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    .flex-box-justify(center);
+    .flex-box-align(center);
+    top: 0;
+    background-color: fade(@brown-shadow, 85%);
+    .standard-transition;
 
-	&.open {
-		.flex-box;
-		.standard-transition;
-	}
+    &.open {
+        .flex-box;
+        .standard-transition;
+    }
 
-	.modal-content {
-		background-color: @brown-dark;
-		padding: 40px;
-		position: relative;
-		min-width: 220px;
-		.standard-transition;
-	}
+    .modal-content {
+        background-color: @brown-dark;
+        padding: 40px;
+        position: relative;
+        min-width: 220px;
+        .standard-transition;
+    }
 
-	.text {
-		padding: 2rem 5rem;
-	}
+    .text {
+        padding: 2rem 5rem;
+    }
 
-	// close
-	.modal-head {
-		.flex-box;
-		.flex-box-justify(flex-end);
-	}
+    // close
+    .modal-head {
+        .flex-box;
+        .flex-box-justify(flex-end);
+    }
 
-	.bar {
-		background-color: white;
-    width: 30px;
-    height: 1px;
-    display: block;
-		&.bar-one {
-			.transform(rotate(45deg));
-		}
-		&.bar-two {
-			.transform(rotate(-45deg));
-		}
-		&:hover {
-			cursor: pointer;
-		}
-	}
+    .bar {
+        background-color: white;
+        width: 30px;
+        height: 1px;
+        display: block;
+        &.bar-one {
+            .transform(rotate(45deg));
+        }
+        &.bar-two {
+            .transform(rotate(-45deg));
+        }
+        &:hover {
+            cursor: pointer;
+        }
+    }
 
-	.congrats {
-		font-family: @font-family-first;
-		text-transform: uppercase;
-		font-size: 1.4rem;
-		letter-spacing: 0.05em;
-		margin-top: 40px;
-	}
+    .congrats {
+        font-family: @font-family-first;
+        text-transform: uppercase;
+        font-size: 1.4rem;
+        letter-spacing: 0.05em;
+        margin-top: 40px;
+    }
 
-	.modal-item {
-		.flex-box;
-		.flex-box-justify(center);
-	}
+    .modal-item {
+        .flex-box;
+        .flex-box-justify(center);
+    }
 
-	.star-rating-wrap {
-		margin: 0.75em 0;
-	}
+    .star-rating-wrap {
+        margin: 0.75em 0;
+    }
 
-	.btn-again {
-		padding: 10px 20px;
-		background-color: transparent;
-		border: 1px solid white;
-		color: white;
-		font-family: @font-family-first;
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-		font-size: 13px;
-		text-decoration: none;
-		.fast-transition;
-		margin-top: 20px;
-		display: block;
-		&:hover {
-			border-color: @brown-light;
-			.fast-transition;
-		}
-	}
+    .btn-again {
+        padding: 10px 20px;
+        background-color: transparent;
+        border: 1px solid white;
+        color: white;
+        font-family: @font-family-first;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-size: 13px;
+        text-decoration: none;
+        .fast-transition;
+        margin-top: 20px;
+        display: block;
+        &:hover {
+            border-color: @brown-light;
+            .fast-transition;
+        }
+    }
 }
 
 /*_________________________
@@ -252,74 +252,74 @@ helpers
 _________________________*/
 
 .bg-img {
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .transform(@transformation){
-	-webkit-transform: @transformation;
-		-ms-transform: @transformation;
-				transform: @transformation;
+    -webkit-transform: @transformation;
+        -ms-transform: @transformation;
+            transform: @transformation;
 }
 
 .backface-visibility(@visibility){
-	-webkit-backface-visibility: @visibility;
-  backface-visibility: @visibility;
+    -webkit-backface-visibility: @visibility;
+    backface-visibility: @visibility;
 }
 
 .flex-box {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-orient: horizontal;
-	-webkit-box-direction: normal;
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
 }
 
 .flex-box-justify(@direction) {
-	-webkit-box-pack: @direction;
-  -ms-flex-pack: @direction;
-  justify-content: @direction;
+    -webkit-box-pack: @direction;
+    -ms-flex-pack: @direction;
+    justify-content: @direction;
 }
 
 .flex-box-align(@direction) {
-	-webkit-box-align: @direction;
-  -ms-flex-align: @direction;
-  align-items: @direction;
+    -webkit-box-align: @direction;
+    -ms-flex-align: @direction;
+    align-items: @direction;
 }
 
 .perspective(@perspective) {
-	-webkit-perspective: @perspective;
-	perspective: @perspective;
+    -webkit-perspective: @perspective;
+    perspective: @perspective;
 }
 
 .standard-transition {
-	-webkit-transition: all 0.5s ease;
-	-o-transition: all 0.5s ease;
-	transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 .slow-transition {
-	-webkit-transition: all 1s ease-in-out;
-	-o-transition: all 1s ease-in-out;
-	transition: all 1s ease-in-out;
+    -webkit-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
 }
 
 .fast-transition {
-	-webkit-transition: all 0.3s ease;
-	-o-transition: all 0.3s ease;
-	transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .transition-delayed {
-	-webkit-transition: all 0.5s ease-in-out 1s;
-	-o-transition: all 0.5s ease-in-out 1s;
-	transition: all 0.5s ease-in-out 1s;
+    -webkit-transition: all 0.5s ease-in-out 1s;
+    -o-transition: all 0.5s ease-in-out 1s;
+    transition: all 0.5s ease-in-out 1s;
 }
 
 .transform-style(@style) {
-	-webkit-transform-style: @style;
-	transform-style: @style;
+    -webkit-transform-style: @style;
+    transform-style: @style;
 }
